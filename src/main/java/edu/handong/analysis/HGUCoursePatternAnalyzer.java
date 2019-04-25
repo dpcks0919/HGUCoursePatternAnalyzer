@@ -3,6 +3,7 @@ package edu.handong.analysis;
 import edu.handong.analysis.datamodel.Course;
 import edu.handong.analysis.datamodel.Student;
 
+
 public class HGUCoursePatternAnalyzer {
 	
 	String[] lines = {	"1999-1, JC Nam, Java Programming",
@@ -29,6 +30,7 @@ public class HGUCoursePatternAnalyzer {
 	 * @param args
 	 */
 	public void run(String[] args) {
+		
 		
 		numOfStudents = Integer.parseInt(args[0]);
 		numOfCourses = Integer.parseInt(args[1]);
