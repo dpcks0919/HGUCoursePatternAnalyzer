@@ -24,7 +24,7 @@ public class HGUCoursePatternAnalyzer {
 	int numOfCourses;
 	Student[] students;
 	Course[] courses;
-	
+ 
 	/**
 	 * This method runs our analysis logic to get the list of student and course names from lines.
 	 * @param args
@@ -36,12 +36,12 @@ public class HGUCoursePatternAnalyzer {
 		numOfCourses = Integer.parseInt(args[1]);
 	
 		students = initiateStudentArrayFromLines(lines);
-		
 		System.out.println("Number of All Students: " + numOfStudents);
 		for(Student student: students) {
 			System.out.println(student.getName());
 		}
-		
+
+
 		courses = initiateCourseArrayFromLines(lines);
 		System.out.println("Number of All Courses: " + numOfCourses);
 		for(Course course: courses) {
@@ -56,13 +56,23 @@ public class HGUCoursePatternAnalyzer {
 	 * @return
 	 */
 	private Student[] initiateStudentArrayFromLines(String[] lines) {
+		int num = lines.length;
+		String[] name = new String[num];
+		students = new Student[3];
+		Student example;
 		
-		// TODO: implement this method
+		for(int i = 0, j=0; i < num ; i++) {
+			name[i] = lines[i].split(",")[1].trim();
+			example = new Student(name[i]);
+			if(studentExist(students, example) ) {
+			students[j] = new Student( name[i] );
+			j++;
+			}
+		}
 		
-		
-		return null;
+		return students;
 	}
-
+	
 	/**
 	 * This method check if there is the same name of the second arugement in the array, students
 	 * @param students
@@ -71,10 +81,17 @@ public class HGUCoursePatternAnalyzer {
 	 */
 	private boolean studentExist(Student[] students, Student student) {
 		
-		// TODO: implement this method
-
-		return false;
+		int i=0;
+		while(students[i] != null) {
+			if( students[i].getName().equals(student.getName() ) ){
+				return false;
+			}
+			i++;
+		}
+	
+		return true;
 	}
+	
 	
 	/**
 	 * This method returns a Course array to initiate the field, courses, from lines.
@@ -83,9 +100,21 @@ public class HGUCoursePatternAnalyzer {
 	 */
 	private Course[] initiateCourseArrayFromLines(String[] lines) {
 		
-		// TODO: implement this method
+		int num = lines.length;
+		String[] name = new String[num];
+		courses = new Course[6];
+		Course example;
 		
-		return null;
+		for(int i = 0, j=0; i < num ; i++) {
+			name[i] = lines[i].split(",")[2].trim();
+			example = new Course(name[i]);
+			if(courseExist(courses, example) ) {
+			courses[j] = new Course( name[i] );
+			j++;
+			}
+		}
+		
+		return courses;
 	}
 
 	/**
@@ -96,9 +125,20 @@ public class HGUCoursePatternAnalyzer {
 	 */
 	private boolean courseExist(Course[] courses, Course course) {
 		
-		// TODO: implement this method
-
-		return false;
+		int i=0;
+		while(courses[i] != null) {
+			if( courses[i].getCourseName().equals(course.getCourseName() ) ){
+				return false;
+			}
+			i++;
+		}
+		return true;
 	}
 
-}
+
+
+
+	
+
+	}
+

@@ -4,7 +4,7 @@ public class Course {
 	private String courseName;
 	
 	public Course(String name) {
-		
+		courseName = name;
 	}
 	
 	public String getCourseName() {
