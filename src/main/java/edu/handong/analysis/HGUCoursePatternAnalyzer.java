@@ -53,14 +53,13 @@ public class HGUCoursePatternAnalyzer {
         int num = lines.length;
         String[] name = new String[num];
         students = new Student[3];
-        Student example;
+        Student list;
 
         for (int i = 0, j = 0; i < num; i++) {
             name[i] = lines[i].split(",")[1].trim();
-            example = new Student(name[i]);
-            if (studentExist(students, example)) {
-                students[j] = new Student(name[i]);
-                j++;
+            list = new Student(name[i]);
+            if (studentExist(students, list)) {
+                students[j++] = new Student(name[i]);
             }
         }
 
@@ -82,7 +81,9 @@ public class HGUCoursePatternAnalyzer {
             if (students[i].getName().equals(student.getName())) {
                 return false;
             }
-            i++;
+            else {
+            	i++;
+            }
         }
 
         return true;
@@ -100,14 +101,13 @@ public class HGUCoursePatternAnalyzer {
         int num = lines.length;
         String[] name = new String[num];
         courses = new Course[6];
-        Course example;
+        Course list;
 
         for (int i = 0, j = 0; i < num; i++) {
             name[i] = lines[i].split(",")[2].trim();
-            example = new Course(name[i]);
-            if (courseExist(courses, example)) {
-                courses[j] = new Course(name[i]);
-                j++;
+            list = new Course(name[i]);
+            if (courseExist(courses, list)) {
+                courses[j++] = new Course(name[i]);
             }
         }
 
@@ -129,7 +129,9 @@ public class HGUCoursePatternAnalyzer {
             if (courses[i].getCourseName().equals(course.getCourseName())) {
                 return false;
             }
-            i++;
+            else{
+            	i++;
+            }
         }
         return true;
     }
