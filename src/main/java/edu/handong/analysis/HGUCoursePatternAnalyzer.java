@@ -1,5 +1,8 @@
 package edu.handong.analysis;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import edu.handong.analysis.datamodel.Course;
 import edu.handong.analysis.datamodel.Student;
 
@@ -14,8 +17,11 @@ public class HGUCoursePatternAnalyzer {
 
     int numOfStudents;
     int numOfCourses;
-    Student[] students;
-    Course[] courses;
+    
+    private ArrayList<Student> students;
+    private ArrayList<Course> courses;
+   // Student[] students;
+    //Course[] courses;
 
     /**
      * This method runs our analysis logic to get the list of student and course
@@ -34,7 +40,7 @@ public class HGUCoursePatternAnalyzer {
             System.out.println(student.getName());
         }
 
-        courses = initiateCourseArrayFromLines(lines);
+       courses = initiateCourseArrayFromLines(lines);
         System.out.println("Number of All Courses: " + numOfCourses);
         for (Course course : courses) {
             System.out.println(course.getCourseName());
@@ -49,19 +55,23 @@ public class HGUCoursePatternAnalyzer {
      * @param lines
      * @return
      */
-    private Student[] initiateStudentArrayFromLines(String[] lines) {
+    private ArrayList<Student> initiateStudentArrayFromLines(String[] lines) {
         int num = lines.length;
         String[] name = new String[num];
-        students = new Student[3];
+        students = new ArrayList<Student>();
+        //students = new Student[3];
         Student list;
 
-        for (int i = 0, j = 0; i < num; i++) {
+        for (int i = 0 ; i < num; i++) {
             name[i] = lines[i].split(",")[1].trim();
-            list = new Student(name[i]);
+        
+            list = new Student(name[i]);    
+
             if (studentExist(students, list)) {
-                students[j++] = new Student(name[i]);
-            }
-        }
+                students.add(list);
+               // students[j++] = new Student(name[i]);
+            } 
+        } 
 
         return students;
     }
@@ -74,11 +84,11 @@ public class HGUCoursePatternAnalyzer {
      * @param student
      * @return boolean
      */
-    private boolean studentExist(Student[] students, Student student) {
+    private boolean studentExist(ArrayList<Student> students, Student student) {
 
-        int i = 0;
-        while (students[i] != null) {
-            if (students[i].getName().equals(student.getName())) {
+    /*    int i = 0;
+        while (students.get(i) != null) {
+            if (students.get(i).equals( student.get()) ) {
                 return false;
             }
             else {
@@ -86,7 +96,15 @@ public class HGUCoursePatternAnalyzer {
             }
         }
 
-        return true;
+        return true; */
+    		
+    	Iterator<Student> it = students.iterator();
+    	while(it.hasNext()) {
+    		if(it.next().getName().equals (student.getName()) ) {
+    			return false;
+    		}
+    	}
+    	return true;
     }
 
     /**
@@ -96,23 +114,25 @@ public class HGUCoursePatternAnalyzer {
      * @param lines
      * @return
      */
-    private Course[] initiateCourseArrayFromLines(String[] lines) {
+    private ArrayList<Course> initiateCourseArrayFromLines(String[] lines) {
 
         int num = lines.length;
         String[] name = new String[num];
-        courses = new Course[6];
+        courses = new ArrayList<Course>();
         Course list;
 
-        for (int i = 0, j = 0; i < num; i++) {
+        for (int i = 0 ; i < num; i++) {
             name[i] = lines[i].split(",")[2].trim();
             list = new Course(name[i]);
+           
             if (courseExist(courses, list)) {
-                courses[j++] = new Course(name[i]);
-            }
+            	 courses.add(list);
+               // courses[j++] = new Course(name[i]);
+            } 
         }
 
         return courses;
-    }
+    }  
 
     /**
      * This method check if there is the same name of the second argument in the
@@ -122,9 +142,9 @@ public class HGUCoursePatternAnalyzer {
      * @param course
      * @return boolean
      */
-    private boolean courseExist(Course[] courses, Course course) {
+   private boolean courseExist(ArrayList<Course> courses, Course course) {
 
-        int i = 0;
+   /*    int i = 0;
         while (courses[i] != null) {
             if (courses[i].getCourseName().equals(course.getCourseName())) {
                 return false;
@@ -132,8 +152,16 @@ public class HGUCoursePatternAnalyzer {
             else{
             	i++;
             }
-        }
+        } */
+	   
+	   Iterator<Course> it = courses.iterator();
+	   while(it.hasNext()) {
+		   if(it.next().getCourseName().equals(course.getCourseName()) ) {
+			   return false;
+		   }
+	   }
+	   
         return true;
-    }
+    }  
 
-}
+}  
