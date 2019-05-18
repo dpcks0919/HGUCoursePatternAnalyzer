@@ -144,7 +144,8 @@ public class HGUCoursePatternAnalyzer {
      */
    private boolean courseExist(ArrayList<Course> courses, Course course) {
 
-   /*    int i = 0;
+   /*    
+    * int i = 0;
         while (courses[i] != null) {
             if (courses[i].getCourseName().equals(course.getCourseName())) {
                 return false;
